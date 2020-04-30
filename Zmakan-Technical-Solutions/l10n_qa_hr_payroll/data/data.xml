@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">        
+        <record id="EXCAVATOR" model="license.type">
+            <field name="name">EXCAVATOR</field>            
+        </record>             
+        <record id="CRANE" model="license.type">
+            <field name="name">CRANE</field>            
+        </record>            
+        <record id="LOADER" model="license.type">
+            <field name="name">LOADER</field>            
+        </record>            
+        <record id="FORKLIFT" model="license.type">
+            <field name="name">FORKLIFT</field>            
+        </record>           
+        <record id="MOTORCYCLE" model="license.type">
+            <field name="name">MOTORCYCLE</field>            
+        </record>            
+        <record id="CAR" model="license.type">
+            <field name="name">CAR</field>            
+        </record>            
+        <record id="BUS" model="license.type">
+            <field name="name">BUS</field>            
+        </record>            
+        <record id="MED" model="license.type">
+            <field name="name">MED.TRECK</field>            
+        </record>          
+        <record id="TRAILER" model="license.type">
+            <field name="name">TRAILER</field>            
+        </record>
+
+        <record id="FATHER" model="employee.relation">
+            <field name="name">Father</field>            
+        </record>             
+        <record id="MOTHER" model="employee.relation">
+            <field name="name">Mother</field>            
+        </record>            
+        <record id="SON" model="employee.relation">
+            <field name="name">Son</field>            
+        </record>            
+        <record id="DAUGHTER" model="employee.relation">
+            <field name="name">Daughter</field>            
+        </record>           
+        <record id="WIFE" model="employee.relation">
+            <field name="name">Wife</field>            
+        </record>            
+        <record id="HUSBAND" model="employee.relation">
+            <field name="name">Husband</field>            
+        </record>  
+
+         <record id="ISLAM" model="employee.religion">
+            <field name="name">Islam</field>            
+        </record>             
+        <record id="HINDU" model="employee.religion">
+            <field name="name">Hindu</field>            
+        </record>            
+        <record id="CHRIST" model="employee.religion">
+            <field name="name">Christian</field>            
+        </record>
+    </data>
+</odoo>

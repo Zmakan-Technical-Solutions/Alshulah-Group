@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--inherit the report of employee contract to add salary structure and schedule pay-->
+        <template id="report_contract_template_view_inherit" inherit_id="l10n_qa_hr_contract.report_contract">
+            <xpath expr="//div/table/tr[4]" position="after">
+                <tr>
+                    <td><strong>Salary Structure</strong></td>
+                    <td style="text-align:right"><span t-field="o.struct_id"/></td>
+                </tr>
+
+            </xpath>
+            <xpath expr="//div/table/t[4]/tr[6]" position="after">
+                <tr t-if="o.schedule_pay">
+                    <td><strong>Scheduled Pay</strong></td>
+                    <td style="text-align:right">
+                        <span t-field="o.schedule_pay"/>
+                    </td>
+                </tr>
+            </xpath>
+        </template>
+    </data>
+</odoo>
