@@ -15,3 +15,7 @@
 	url = git@github.com:Zmakan-Technical-Solutions/zts_asg_custom.git
 
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/partner_credit_limit_zts"]
+	path = Zmakan-Technical-Solutions/partner_credit_limit_zts
+	url = git@github.com:Zmakan-Technical-Solutions/partner_credit_limit_zts.git
+	branch = 13.0
