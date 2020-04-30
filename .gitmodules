@@ -7,3 +7,7 @@
 	url = git@github.com:Zmakan-Technical-Solutions/zts_asg_custom.git
 
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/l10n_qa_hr_contract"]
+	path = Zmakan-Technical-Solutions/l10n_qa_hr_contract
+	url = git@github.com:Zmakan-Technical-Solutions/l10n_qa_hr_contract.git
+	branch = 13.0
