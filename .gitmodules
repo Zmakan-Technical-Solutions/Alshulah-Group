@@ -1,4 +1,9 @@
 [submodule "Zmakan-Technical-Solutions/zts_merge_purchase_order"]
 	path = Zmakan-Technical-Solutions/zts_merge_purchase_order
 	url = git@github.com:Zmakan-Technical-Solutions/zts_merge_purchase_order.git
+
+[submodule "Zmakan-Technical-Solutions/zts_asg_custom"]
+	path = Zmakan-Technical-Solutions/zts_asg_custom
+	url = git@github.com:Zmakan-Technical-Solutions/zts_asg_custom.git
+
 	branch = 13.0
