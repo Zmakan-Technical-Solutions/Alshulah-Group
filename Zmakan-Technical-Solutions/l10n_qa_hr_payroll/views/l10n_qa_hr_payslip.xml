@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_payslip_salary_structure" inherit_id="hr_payroll.report_payslip">
+            <!--Replacing the report content to show employee details and employee salary structure-->
+            <xpath expr="//div" position="replace">
+                <div class="page">
+                    <!--<h2>Pay Slip</h2>--><p></p>
+                    <h3><span t-field="o.name"/></h3>
+                    <!--Adds the employee information and employee salary structure-->
+                    <table class="table table-condensed table-bordered">
+                        <tr>
+                            <td><strong>Employee</strong></td>
+                            <td class="text-center"><span t-field="o.employee_id"/></td>
+                            <!--t-esc call the function payslip_translation with parameter only when the employee language is otherthan english-->
+                            <td class="text-right" t-if="o.employee_id.lang and o.employee_id.lang!='en_US'"><span t-esc="o.payslip_translation('Employee')" style="font-weight:bold"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Job Position</strong></td>
+                            <td class="text-center"><span t-field="o.employee_id.job_id"/></td>
+                            <!--t-esc call the function payslip_translation with parameter only when the employee language is otherthan english-->
+                            <td class="text-right" t-if="o.employee_id.lang and o.employee_id.lang!='en_US'"><span t-esc="o.payslip_translation('Job Position')" style="font-weight:bold"/></td>
+
+                        </tr>
+                        <tr>
+                            <td><strong>Address</strong></td>
+                            <td class="text-center"><div t-field="o.employee_id.address_home_id" t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/></td>
+                            <!--t-esc call the function payslip_translation with parameter only when the employee language is otherthan english-->
+                            <td class="text-right" t-if="o.employee_id.lang and o.employee_id.lang!='en_US'"><span t-esc="o.payslip_translation('Address')" style="font-weight:bold"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email</strong></td>
+                            <td class="text-center"><span t-field="o.employee_id.work_email"/></td>
+                            <!--t-esc call the function payslip_translation with parameter only when the employee language is otherthan english-->
+                            <td class="text-right" t-if="o.employee_id.lang and o.employee_id.lang!='en_US'"><span t-esc="o.payslip_translation('Email')" style="font-weight:bold"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Identification No</strong></td>
+                            <td class="text-center"><span t-field="o.employee_id.identification_id"/></td>
+                            <!--t-esc call the function payslip_translation with parameter only when the employee language is otherthan english-->
+                            <td class="text-right" t-if="o.employee_id.lang and o.employee_id.lang!='en_US'"><span t-esc="o.payslip_translation('Identification No')" style="font-weight:bold"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reference</strong></td>
+                            <td class="text-center"><span t-field="o.number"/></td>
+                            <!--t-esc call the function payslip_translation with parameter only when the employee language is otherthan english-->
+                            <td class="text-right" t-if="o.employee_id.lang and o.employee_id.lang!='en_US'"><span t-esc="o.payslip_translation('Reference')" style="font-weight:bold"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bank Account Number</strong></td>
+                            <td class="text-center"><span t-field="o.employee_id.bank_account_id"/></td>
+                            <!--t-esc call the function payslip_translation with parameter only when the employee language is otherthan english-->
+                            <td class="text-right" t-if="o.employee_id.lang and o.employee_id.lang!='en_US'"><span t-esc="o.payslip_translation('Bank Account Number')" style="font-weight:bold"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date From</strong></td>
+                            <td class="text-center"><span t-field="o.date_from"/></td>
+                            <!--t-esc call the function payslip_translation with parameter only when the employee language is otherthan english-->
+                            <td class="text-right" t-if="o.employee_id.lang and o.employee_id.lang!='en_US'"><span t-esc="o.payslip_translation('Date From')" style="font-weight:bold"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date To</strong></td>
+                            <td class="text-center"><span t-field="o.date_to"/></td>
+                            <!--t-esc call the function payslip_translation with parameter only when the employee language is otherthan english-->
+                            <td class="text-right" t-if="o.employee_id.lang and o.employee_id.lang!='en_US'"><span t-esc="o.payslip_translation('Date To')" style="font-weight:bold"/></td>
+                        </tr>
+                        <tr style="border-left:solid white;border-right:solid white;">
+                            <th colspan="3"><h3>Salary Structure of <span t-field="o.employee_id"/></h3></th>
+                        </tr>
+                        <tr>
+                            <th style="text-align:left">Components</th>
+                            <th style="text-align:center">Payments</th>
+                            <!--t-esc call the function payslip_translation with parameter only when the employee language is otherthan english-->
+                            <th class="text-right" t-if="o.employee_id.lang and o.employee_id.lang!='en_US'"><span t-esc="o.payslip_translation('Components')" style="font-weight:bold"/></th>
+                        </tr>
+                        <!--Adds the salary structure-->
+                        <!--t-foreach iterate the salary structure components to payslip from the salary computation one2many-->
+                        <tr t-foreach="o.line_ids.filtered(lambda line: line.appears_on_payslip)" t-as="line">
+                            <!--Check whether the salary structure components total are not zero, if the total line amount is zero then don't display it on the payslip.
+                            It also check whether the component gives total payment or not, to make sure to display the component values without currency.
+                            It also check the lines include company contribution and its total, if so don't display here-->
+                            <t t-if="line.total != 0 and line.code!='TOTAL_PAY' and line.category_id.name!='Company Contribution' and line.category_id.name!='Total Company Contribution'">
+                                <td>
+                                    <strong>
+                                        <span t-field="line.name"/>
+                                        <!--t-foreach iterate the payslip inputs-->
+                                        <t t-foreach="o.input_line_ids" t-as="input_line">
+                                            <!--t-foreach iterate the inputs in each salary rule-->
+                                            <!-- <t t-foreach="line.salary_rule_id.input_ids" t-as="input"> -->
+                                                <!--if both payslip input line code
+                                                 and salary structure components rule input are same then shows the input on the bracket-->
+                                                <!-- <t t-if="input_line.input_type_id.code=='DRD'">
+                                                    (<span t-esc="int(float(input_line.amount))"/><span> days</span>)
+                                                </t> -->
+                                                <!--if both payslip input line code and salary structure components rule input are same then shows the input on the bracket-->
+                                                <t t-if="(input_line.code=='OH' and input.code=='OH') or(input_line.code=='HDH' and input.code=='HDH')">
+                                                    (<span t-esc="int(float(input_line.amount))"/><span> hours</span>)
+                                                </t>
+                                            <!-- </t> -->
+                                        </t>
+                                        <!--t-foreach iterate the payslip worked days for adding unpaid leave days along with the unpaid leave deduction salary component-->
+                                        <t t-foreach="o.worked_days_line_ids" t-as="worked_line">
+                                            <!--if salary structure components is unpaid leave deduction and payslip worked days code is Unpaid then-->
+                                            <t t-if="line.code=='UNPAID_LEAVE' and worked_line.code=='Unpaid'">
+                                                (<span t-esc="int(float(worked_line.number_of_days))"/><span> days</span>)
+                                            </t>
+                                            <t t-if="line.code=='PARTIALLY_PAID_SICK_LEAVE' and worked_line.code=='PartiallyPaidSickLeave'">
+                                                (<span t-esc="int(float(worked_line.number_of_days))"/><span> days</span>)
+                                            </t>
+                                            <t t-if="line.code=='UNPAID_SICK_LEAVE' and worked_line.code=='UnpaidSickLeave'">
+                                                (<span t-esc="int(float(worked_line.number_of_days))"/><span> days</span>)
+                                            </t>
+                                            <t t-if="line.code=='PILGRIMAGE_LEAVE' and worked_line.code=='Pilgrimage'">
+                                                (<span t-esc="int(float(worked_line.number_of_days))"/><span> days</span>)
+                                            </t>
+                                            <t t-if="line.code=='UNEMPLOYMENT' and worked_line.code=='Unemployment'">
+                                                (<span t-esc="int(float(worked_line.number_of_days))"/><span> days</span>)
+                                            </t>
+                                        </t>
+                                    </strong>
+                                </td>
+                                <!--'%.2f'%(float(line.total)) adds the 2 decimal precision to the total and t-esc-options removes the currency from the salary component total-->
+                                <td style="text-align:center"><span t-esc="line.total" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td>
+                                <!--t-esc call the function payslip_translation with parameter only when the employee language is otherthan english-->
+                                <td class="text-right" t-if="o.employee_id.lang and o.employee_id.lang!='en_US'"><span t-esc="o.payslip_translation(line.name)" style="font-weight:bold"/></td>
+                            </t>
+                            <!--Check whether the component gives total payment or not, if so then display the total payment value with currency.
+                            It also check the lines include company contribution and its total, if so don't display here-->
+                            <t t-if="line.code=='TOTAL_PAY'and line.category_id.name!='Company Contribution' and line.category_id.name!='Total Company Contribution'">
+                                <!--<u> tag adds underline to the total payment name-->
+                                <td><strong><u><span t-field="line.name"/></u></strong></td>
+                                <!--t-esc-options adds the company currency to the salary component total-->
+                                <td style="text-align:center"><u><span t-esc="line.total" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></u></td>
+                                <!--t-esc call the function payslip_translation with parameter only when the employee language is otherthan english-->
+                                <td class="text-right" t-if="o.employee_id.lang and o.employee_id.lang!='en_US'"><u><span t-esc="o.payslip_translation(line.name)" style="font-weight:bold"/></u></td>
+
+                            </t>
+                        </tr>
+                        <!--Adds the company contribution. We are using a variable 'counter' and it is set to zero initially. The salary components are taken from the payslip salary
+                        computation using t-foreach. For each iteration,if the computation line include category company contribution the value of the counter get incremented
+                        everytime. The rows of company contribution appear only when the salary component under the category company contribution exist in the payslip salary
+                        computation, when the line total is not equal to zero and the counter value is 1 ( counter will make the row to appear only one time)-->
+                        <!-- <t t-set="counter" t-value="0" />
+                        <t t-foreach="o.line_ids.filtered(lambda line: line.appears_on_payslip)" t-as="line" t-if="line.category_id.name=='Company Contribution' and line.total != 0">
+                            <t t-set="counter" t-value="counter+1"/>
+                            <t t-if="counter==1">
+                                <tr style="border-left:solid white;border-right:solid white;">
+                                    <th colspan="3"><h3>Company Contributions</h3></th>
+                                </tr> -->
+                                <!-- <tr>
+                                    <th style="text-align:left">Components</th>
+                                    <th style="text-align:center">Payments</th> -->
+                                    <!--t-esc call the function payslip_translation with parameter only when the employee language is otherthan english-->
+                                    <!-- <th class="text-right" t-if="o.employee_id.lang and o.employee_id.lang!='en_US'"><span t-esc="o.payslip_translation('Components')" style="font-weight:bold"/></th>
+                                </tr> -->
+                           <!--  </t>
+
+                        </t> -->
+                        <!--t-foreach adds the salary structure components to payslip from the salary computation one2many-->
+                        <!-- <tr t-foreach="o.line_ids.filtered(lambda line: line.appears_on_payslip)" t-as="line"> -->
+                            <!--Check whether the company contribution components total are not zero, if the total is zero then don't display it on the payslip.
+                             It also check the lines include only company contribution,to make sure to display the component values without currency and also
+                              it check whether the component gives total company contribution or not-->
+                           <!--  <t t-if="line.total != 0 and line.category_id.name=='Company Contribution' and line.code!='TOTAL_COMP_CONTRIBUTION' ">
+                                <td><strong><span t-field="line.name"/></strong></td> -->
+                                <!--'%.2f'%(float(line.total)) adds the 2 decimal precision to the total amount and t-esc-options removes the currency from the company contribution component total-->
+                                <!-- <td style="text-align:center"><span t-esc="line.total" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td> -->
+                                <!--t-esc call the function payslip_translation with parameter only when the employee language is otherthan english-->
+                                <!-- <td class="text-right" t-if="o.employee_id.lang and o.employee_id.lang!='en_US'"><span t-esc="o.payslip_translation(line.name)" style="font-weight:bold"/></td>
+                            </t> -->
+                            <!--Check whether the components gives total company contribution or not, if so then display the total company contribution value with currency.-->
+                            <!-- <t t-if="line.code=='TOTAL_COMP_CONTRIBUTION' and line.total != 0"> -->
+                                <!--<u> tag adds underline to the total company contribution name-->
+                                <!-- <td><strong><u><span t-field="line.name"/></u></strong></td> -->
+                                <!--t-esc-options adds the company currency to the total company contribution-->
+                                <!-- <td style="text-align:center"><u><span t-esc="line.total" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></u></td> -->
+                                <!--t-esc call the function payslip_translation with parameter only when the employee language is otherthan english-->
+                                <!-- <td class="text-right" t-if="o.employee_id.lang and o.employee_id.lang!='en_US'"><u><span t-esc="o.payslip_translation(line.name)" style="font-weight:bold"/></u></td>
+                            </t>
+                        </tr> -->
+                    </table>
+                    <!--Add the line 'Authorized signature' to payslip-->
+                    <p class="text-right"><strong>Authorized signature</strong></p>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

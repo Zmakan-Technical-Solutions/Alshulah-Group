@@ -1,0 +1,208 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * hr_salary_rule
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-18 10:08+0000\n"
+"PO-Revision-Date: 2019-08-26 09:36+0000\n"
+"Last-Translator: refana \n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_house_allowance
+msgid "Housing Allowance"
+msgstr "علاوة سكن"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_trans_allowance
+msgid "Transportaion Allowance"
+msgstr "علاوة تنقل"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_tele_allowance
+msgid "Telecom Allowance"
+msgstr "علاوة اتصالات"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_food_allowance
+msgid "Food Allowance"
+msgstr "علاوة طعام"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_duty_roaster
+msgid "Duty Roaster Allowance"
+msgstr "علاوة ورديات"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_encouragement_allowance
+msgid "Encouragement Allowance"
+msgstr "علاوة تشجيعية"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_sales_commission
+msgid "Sales Commission Allowance"
+msgstr "علاوة عمولة مبيعات"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_work_day_duty
+msgid "Worked Day Overtime"
+msgstr "ساعات إضافية في يوم عمل"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_holiday_duty
+msgid "Holiday Duty Overtime"
+msgstr "ساعات إضافية في يوم إجازة"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_basic_salary_adjustment
+msgid "Basic Salary Adjustment"
+msgstr "تعديل على الراتب الأساسي"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_house_adjustment
+msgid "Housing Allowance Adjustment"
+msgstr "تعديل علاوة السكن"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_trans_allowance
+msgid "Transportation Allowance Adjustment"
+msgstr "تعديل علاوة التنقل"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_tele_adjustment
+msgid "Telecom Allowance Adjustment"
+msgstr "تعديل علاوة الاتصالات"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_special_allowance
+msgid "Other Allowance"
+msgstr "بدلات أخرى"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_annual_bonus
+msgid "Annual Bonus"
+msgstr "مكافئة سنوية"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_annual_ticket
+msgid "Annual Ticket"
+msgstr "تذكرة سفر سنوية"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_income_tax
+msgid "Income Tax"
+msgstr "ضريبة دخل"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_salary_recovery
+msgid "Advance Salary Recovery"
+msgstr "إستقطاع سلفة على الراتب"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_unpaid_leave
+msgid "Unpaid Leave Deduction"
+msgstr "خصم إجازة بدون راتب"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_pilgrimage_leave
+msgid "Pilgrimage Leave Deduction"
+msgstr "خصم إجازة حج"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_partially_paid_sick_leave
+msgid "Partially Paid Sick Leave Deduction"
+msgstr "إجازة مرضية مدفوعة جزئياً"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_unpaid_sick_leave
+msgid "Unpaid Sick Leave Deduction"
+msgstr "إجازة مرضية غير مدفوعة"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_pension_plan_ded
+msgid "Pension Plan Deduction"
+msgstr "خصم مساهمة صندوق المعاشات"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_unemployment
+msgid "Unemployment Deduction"
+msgstr "خصم  بطالة"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_other_ded
+msgid "Other Deductions"
+msgstr "خصومات أخرى"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_total_payment
+msgid "Total Payment"
+msgstr "إجمالي المدفوع"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_pension_plan_comp
+msgid "Pension Plan"
+msgstr "مساهمة صندوق المعاشات"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_total_comp_contribution
+msgid "Total Company Contribution"
+msgstr "إجمالي مساهمات الشركة"
+
+#. module: hr_payroll
+#: model_terms:ir.ui.view,arch_db:hr_payroll.report_payslip
+msgid "Components"
+msgstr "بيانات"
+
+#. module: zts_attendance_sheet
+#: model:hr.salary.rule,name:zts_attendance_sheet.hr_rule_late_dedcution
+msgid "Late Deduction"
+msgstr "خصم متأخر"
+
+#. module: zts_attendance_sheet
+#: model:hr.salary.rule,name:zts_attendance_sheet.hr_rule_shift_absent_dedcution
+msgid "Shift Absent Deduction"
+msgstr "خصم التحول الغائب"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_supervision
+msgid "Supervision Allowance"
+msgstr "بدل إشرافي"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_hajj_leave
+msgid "Hajj Leave Deduction"
+msgstr "خصم إجازة الحج"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_mrg_leave
+msgid "Marriage Leave Deduction"
+msgstr "خصم إجازة الزواج"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_cmp_leave
+msgid "Compassionate Leave Deduction"
+msgstr "رحم الإجازة"
+
+#. module: l10n_qa_hr_payroll
+#: model:hr.salary.rule,name:l10n_qa_hr_payroll.hr_rule_unautherized_leave
+msgid "Unautherized Leave Deduction"
+msgstr "خصم الإجازات غير المصرح به"
+
+#. module: hr_payroll
+#: model_terms:ir.ui.view,arch_db:hr_payroll.report_payslip
+msgid "Basic Salary"
+msgstr "راتب اساسي"
+
+#. module: hr_payroll
+#: model_terms:ir.ui.view,arch_db:hr_payroll.report_payslip
+msgid "Total Payment"
+msgstr "إجمالي المدفوع"
