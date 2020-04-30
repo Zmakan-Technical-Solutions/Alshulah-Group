@@ -1,0 +1,4 @@
+[submodule "Zmakan-Technical-Solutions/zts_asg_custom"]
+	path = Zmakan-Technical-Solutions/zts_asg_custom
+	url = git@github.com:Zmakan-Technical-Solutions/zts_asg_custom.git
+	branch = 13.0
