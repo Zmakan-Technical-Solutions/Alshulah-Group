@@ -1,0 +1,8 @@
+[submodule "Zmakan-Technical-Solutions/discount_account_invoice"]
+	path = Zmakan-Technical-Solutions/discount_account_invoice
+	url = git@github.com:Zmakan-Technical-Solutions/discount_account_invoice.git
+	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/discount_sale_order"]
+	path = Zmakan-Technical-Solutions/discount_sale_order
+	url = git@github.com:Zmakan-Technical-Solutions/discount_sale_order.git
+	branch = 13.0
