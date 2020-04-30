@@ -7,3 +7,7 @@
 	url = git@github.com:Zmakan-Technical-Solutions/zts_asg_custom.git
 
 	branch = 13.0
+[submodule "zts_attendance_sheet"]
+	path = zts_attendance_sheet
+	url = git@github.com:Zmakan-Technical-Solutions/zts_attendance_sheet.git
+	branch = 13.0
