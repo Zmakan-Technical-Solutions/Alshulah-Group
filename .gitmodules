@@ -7,3 +7,7 @@
 	url = git@github.com:Zmakan-Technical-Solutions/zts_asg_custom.git
 
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/zts_approval_workflow_base"]
+	path = Zmakan-Technical-Solutions/zts_approval_workflow_base
+	url = git@github.com:Zmakan-Technical-Solutions/zts_approval_workflow_base.git
+	branch = 13.0
