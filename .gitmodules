@@ -11,3 +11,7 @@
 	path = Zmakan-Technical-Solutions/zts_approval_workflow_base
 	url = git@github.com:Zmakan-Technical-Solutions/zts_approval_workflow_base.git
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/zts_approval_workflow_purchase"]
+	path = Zmakan-Technical-Solutions/zts_approval_workflow_purchase
+	url = git@github.com:Zmakan-Technical-Solutions/zts_approval_workflow_purchase.git
+	branch = 13.0
