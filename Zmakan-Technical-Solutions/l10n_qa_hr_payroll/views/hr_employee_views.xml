@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="hr_employee_public_inherit" model="ir.ui.view">
+            <field name="name">hr_employee_bank_account_type</field>
+            <field name="model">hr.employee.public</field>
+            <field name="inherit_id" ref="hr.hr_employee_public_view_form"/>
+            <field name="arch" type="xml">              
+                <xpath expr="//field[@name='coach_id']" position="attributes">
+                     <attribute name="groups">hr.group_hr_user</attribute> 
+                </xpath>
+                <xpath expr="//field[@name='resource_calendar_id']" position="attributes">
+                     <attribute name="groups">hr.group_hr_user</attribute> 
+                </xpath>                
+            </field>
+        </record>
+        
+        <record id="hr_employee_bank_account_type" model="ir.ui.view">
+            <field name="name">hr_employee_bank_account_type</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='work_phone']" position="after">
+                    <field name="zts_employee_number"/>
+                </xpath>
+                <xpath expr="//field[@name='address_home_id']" position="after">
+                    <field name="lang" string="Language"/>
+                </xpath>
+                 <xpath expr="//field[@name='job_id']" position="attributes">
+                     <attribute name="groups">hr.group_hr_user</attribute> 
+                </xpath>                          
+               <xpath expr="//form/sheet/notebook/page[2]/group[1]/group[3]" position="attributes">
+                    <attribute name="string">Social Status</attribute>
+                </xpath>
+
+                <!--field for arabic name-->
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="zts_name_arabic" placeholder="Name Arabic"/>
+                </xpath>
+                <xpath expr="//field[@name='passport_id']" position="after">
+                    <field name="zts_passport_exp_date"/>
+                </xpath>
+                <xpath expr="//field[@name='bank_account_id']" position="after">
+                    <field name="zts_type"/>
+                    <field name="zts_bank_pay"/>
+                </xpath>
+                <xpath expr="//field[@name='visa_expire']" position="after">
+                    <field name="zts_work_permit_exp_date"/>
+                </xpath>
+                <xpath expr="//field[@name='marital']" position="after">
+                    <field name="zts_religion"/>
+                </xpath>
+
+                <xpath expr="//page[@name='personal_information']/group" position="inside">
+                <group string="Additional Information">
+                    <field name="zts_joining_date"/>
+                    <field name="zts_qid_number"/>
+                    <field name="zts_qid_exp_date"/>                   
+                    <field name="zts_sponser_name"/>                   
+                    <field name="zts_drvng_licns_no"/>
+                    <field name="zts_drvng_licns_issue"/>
+                    <field name="zts_drvng_licns_expry"/>
+                    <field name="zts_drvng_licns_type" widget="many2many_tags"/>
+                    <field name="health_card"/>
+                    <field name="health_card_exp"/>                    
+                </group>
+            </xpath>            
+                
+            <xpath expr="//page[@name='hr_settings']" position="after">
+                <page string="Family Member Details" groups="hr.group_hr_user">
+                    <field name = "zts_member_ids" ivisible="1">
+                      <tree string="Member Details">            
+                            <field name="zts_name"/>
+                            <field name="zts_relation_id"/>
+                            <field name="zts_religion"/>
+                            <field name="zts_rp_fee_elg"/>
+                            <field name="zts_health_insurance_elg"/>
+                            <field name="zts_ticket_elg"/>
+                        </tree>
+                    </field>              
+                </page>
+            </xpath>
+
+            <xpath expr="//form/sheet/notebook/page[2]/group[1]/group[4]" position="attributes">
+                <attribute name="attrs">{'invisible': [('marital', 'in', ['single'])]}</attribute>
+            </xpath>
+
+             <xpath expr="//field[@name='children']" position="replace">
+                    <field name="children" attrs="{'invisible': [('marital', 'in', ['single'])]}"/>
+                </xpath>
+
+            <xpath expr="//page[@name='hr_settings']" position="after">
+                <page string="Personal Attachments" groups="hr.group_hr_user">
+                    <group>
+                        <group>
+                    <field name = "zts_passport_doc_attachment_id"  widget="many2many_binary"/>
+                    <field name = "zts_qid_doc_attachment_id"  widget="many2many_binary" />
+                    <field name="zts_lcns_doc_attachment_id" widget="many2many_binary"/>
+                     <field name="zts_health_doc_attachment_id" widget="many2many_binary"/>
+                </group>
+            </group>
+                </page>
+            </xpath>
+
+            </field>
+        </record>
+
+        <record id="hr_employee_member_details" model="ir.ui.view">
+            <field name="name">hr.employee.member.details</field>
+            <field name="model">member.details</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                    <group>
+                    <group>
+                        <field name="zts_name"/>
+                        <field name="zts_relation_id"/>
+                        <field name="zts_religion"/>
+                    </group>
+                    <group>
+                        <field name="zts_rp_fee_elg"/>
+                        <field name="zts_health_insurance_elg"/>
+                        <field name="zts_ticket_elg"/>
+                    </group>
+                    </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_hr_employee_view_form2_inherit" model="ir.ui.view">
+            <field name="name">hr.hr.employee.view.form2</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_contract.hr_hr_employee_view_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='bank_account_id']" position="attributes">    <attribute name="invisible">1</attribute> 
+                    <attribute name="context">{'display_partner': True}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
