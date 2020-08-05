@@ -16,6 +16,11 @@
 
 	branch = 13.0
 
+[submodule "Zmakan-Technical-Solutions/zts_user_based_discount"]
+	path = Zmakan-Technical-Solutions/zts_user_based_discount
+	url = git@github.com:Zmakan-Technical-Solutions/zts_user_based_discount.git
+
+
 [submodule "Zmakan-Technical-Solutions/l10n_qa_hr_contract"]
 	path = Zmakan-Technical-Solutions/l10n_qa_hr_contract
 	url = git@github.com:Zmakan-Technical-Solutions/l10n_qa_hr_contract.git
@@ -27,5 +32,4 @@
 [submodule "Zmakan-Technical-Solutions/zts_wps_sif"]
 	path = Zmakan-Technical-Solutions/zts_wps_sif
 	url = git@github.com:Zmakan-Technical-Solutions/zts_wps_sif.git
-
 	branch = 13.0
