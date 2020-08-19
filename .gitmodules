@@ -29,3 +29,7 @@
 	url = git@github.com:Zmakan-Technical-Solutions/partner_credit_limit_zts.git
 
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/zts_loan"]
+	path = Zmakan-Technical-Solutions/zts_loan
+	url = git@github.com:Zmakan-Technical-Solutions/zts_loan.git
+	branch = 13.0
