@@ -33,3 +33,7 @@
 	path = Zmakan-Technical-Solutions/zts_loan
 	url = git@github.com:Zmakan-Technical-Solutions/zts_loan.git
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/zts_salary_advance"]
+	path = Zmakan-Technical-Solutions/zts_salary_advance
+	url = git@github.com:Zmakan-Technical-Solutions/zts_salary_advance.git
+	branch = 13.0
