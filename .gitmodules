@@ -34,3 +34,7 @@
 	url = git@github.com:Zmakan-Technical-Solutions/partner_credit_limit_zts.git
 
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/zts_attendance_sheet"]
+	path = Zmakan-Technical-Solutions/zts_attendance_sheet
+	url = git@github.com:Zmakan-Technical-Solutions/zts_attendance_sheet.git
+	branch = 13.0
