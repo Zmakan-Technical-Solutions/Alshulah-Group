@@ -33,3 +33,7 @@
 	path = Zmakan-Technical-Solutions/localization_contract
 	url = git@github.com:Zmakan-Technical-Solutions/localization_contract.git
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/localization_payroll"]
+	path = Zmakan-Technical-Solutions/localization_payroll
+	url = git@github.com:Zmakan-Technical-Solutions/localization_payroll.git
+	branch = 13.0
