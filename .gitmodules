@@ -29,3 +29,7 @@
 	url = git@github.com:Zmakan-Technical-Solutions/zts_wps_sif.git
 
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/stock_by_location"]
+	path = Zmakan-Technical-Solutions/stock_by_location
+	url = git@github.com:Zmakan-Technical-Solutions/stock_by_location.git
+	branch = 13.0
