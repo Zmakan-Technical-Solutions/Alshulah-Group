@@ -29,3 +29,7 @@
 	url = git@github.com:Zmakan-Technical-Solutions/zts_wps_sif.git
 
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/zts_invoice_post_restriction"]
+	path = Zmakan-Technical-Solutions/zts_invoice_post_restriction
+	url = git@github.com:Zmakan-Technical-Solutions/zts_invoice_post_restriction.git
+	branch = 13.0
