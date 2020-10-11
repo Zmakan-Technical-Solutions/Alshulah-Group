@@ -37,3 +37,7 @@
 	path = Zmakan-Technical-Solutions/stock_no_negative
 	url = git@github.com:Zmakan-Technical-Solutions/stock_no_negative.git
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/zts_invoice_post_restriction"]
+	path = Zmakan-Technical-Solutions/zts_invoice_post_restriction
+	url = git@github.com:Zmakan-Technical-Solutions/zts_invoice_post_restriction.git
+	branch = 13.0
