@@ -33,3 +33,7 @@
 	path = Zmakan-Technical-Solutions/zts_wps_sif
 	url = git@github.com:Zmakan-Technical-Solutions/zts_wps_sif.git
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/discount_restrictions"]
+	path = Zmakan-Technical-Solutions/discount_restrictions
+	url = git@github.com:Zmakan-Technical-Solutions/discount_restrictions.git
+	branch = 13.0
