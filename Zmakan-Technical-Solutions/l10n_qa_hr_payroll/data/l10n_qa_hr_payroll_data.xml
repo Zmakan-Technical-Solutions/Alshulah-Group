@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!--HR salary rule category for adjustment-->
+        <record id="ADJUST" model="hr.salary.rule.category">
+            <field name="name">Adjustment</field>
+            <field name="code">ADJUST</field>
+        </record>
+        <!--HR salary rule category for overtime-->
+        <record id="OVERTIME" model="hr.salary.rule.category">
+            <field name="name">Overtime</field>
+            <field name="code">OVERTIME</field>
+        </record>
+        <!--HR salary rule category for annual benefits-->
+        <record id="ANNUAL_BENEFIT" model="hr.salary.rule.category">
+            <field name="name">Annual Benefit</field>
+            <field name="code">ANNUAL_BENEFIT</field>
+        </record>
+        <!--HR salary rule category for tax-->
+        <record id="TAX" model="hr.salary.rule.category">
+            <field name="name">Tax</field>
+            <field name="code">TAX</field>
+        </record>
+        <!--HR salary rule category for dynamic allowances-->
+        <record id="DYNAMIC_ALW" model="hr.salary.rule.category">
+            <field name="name">Dynamic Allowances</field>
+            <field name="code">DYNAMIC_ALW</field>
+        </record>
+        <!--HR salary rule category for total company contribution-->
+        <record id="TOTAL_COMP" model="hr.salary.rule.category">
+            <field name="name">Total Company Contribution</field>
+            <field name="code">TOTAL_COMP</field>
+        </record>
+
+         <record id="structure_type_base" model="hr.payroll.structure.type">
+            <field name="name">Base</field>
+            <field name="country_id" eval="False"/>
+        </record>
+
+          <record id="structure_004" model="hr.payroll.structure">
+            <field name="name">Base for new structure</field>
+            <field name="type_id" ref="structure_type_base"/>
+            <!-- <field name="rule_ids" eval="[(6, 0, [ref('hr_payroll.GROSS')])]"/> -->
+            <!-- <field name="regular_pay" eval="True"/>
+            <field name="unpaid_work_entry_type_ids" eval="[(4, ref('hr_payroll.work_entry_type_unpaid_leave'))]"/> -->
+            <field name="country_id" eval="False"/>
+        </record>
+        <!--Hr salary rule for housing allowance-->
+        <record id="hr_rule_house_allowance" model="hr.salary.rule">
+            <field name="name">Housing Allowance</field>
+            <field name="sequence" eval="300"/>
+            <field name="code">HOUSE_ALW</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=contract.x_house if (contract.x_house_allowances=='cash') else 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.x_house</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the employee housing allowance.</field>
+        </record>
+       
+         <!--Hr salary rule for transportation allowance-->
+        <record id="hr_rule_trans_allowance" model="hr.salary.rule">
+            <field name="name">Transportaion Allowance</field>
+            <field name="sequence" eval="301"/>
+            <field name="code">TRANS_ALW</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=contract.x_trans or False</field>
+            <field name="amount_select">code</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="amount_python_compute">result=contract.x_trans if (contract.x_trans_allowances=='cash') else 0</field>
+            <field name="note">This rule will calculate the transportation allowance for an employee.</field>
+        </record>
+        <!--Hr salary rule for telecom allowance-->
+        <record id="hr_rule_tele_allowance" model="hr.salary.rule">
+            <field name="name">Telecom Allowance</field>
+            <field name="sequence" eval="302"/>
+            <field name="code">TELE_ALW</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=contract.x_tele if (contract.x_tele_allowances=='cash') else 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.x_tele</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the telecom allowance for an employee.</field>
+        </record>
+        <!--Hr salary rule for food allowance-->
+        <record id="hr_rule_food_allowance" model="hr.salary.rule">
+            <field name="name">Food Allowance</field>
+            <field name="sequence" eval="303"/>
+            <field name="code">FOOD_ALW</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=contract.x_food if (contract.x_food_allowances=='cash') else 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.x_food</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the food allowance for an employee.</field>
+        </record>
+        <record id="hr_rule_supervision" model="hr.salary.rule">
+            <field name="name">Supervision Allowance</field>
+            <field name="sequence" eval="307"/>
+            <field name="code">SPR_VSN</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+             <field name="condition_python">result=contract.x_supervision if (contract.x_supervision_allowance=='cash') else 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.x_supervision</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the supervision allowance for an employee.</field>
+        </record>
+            <!-- other allowance -->
+        <record id="hr_rule_special_allowance" model="hr.salary.rule">
+            <field name="name">Other Allowance</field>
+            <field name="sequence" eval="305"/>
+            <field name="code">SPECIAL_ALW</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=contract.x_special if (contract.x_special_allowance=='cash') else 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.x_special</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the other allowances for an employee.</field>
+        </record>
+
+        <record id="hr_rule_sales_commission" model="hr.salary.rule">
+            <field name="name">Sales Commission Allowance</field>
+            <field name="sequence" eval="307"/>
+            <field name="code">SALE_COMM</field>
+            <field name="category_id" ref="l10n_qa_hr_payroll.DYNAMIC_ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=contract.x_percent if (contract.x_sales_comm_allowance=='percentage') else 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.x_percent*(inputs.MIS.amount if (inputs.MIS and inputs.MIS.amount) else 0)/100</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the sales commission allowance for monthly invoiced sales.</field>
+        </record>
+
+        <record id="hr_rule_sales_commission" model="hr.salary.rule">
+            <field name="name">Sales Commission Allowance</field>
+            <field name="sequence" eval="307"/>
+            <field name="code">SALE_COMM</field>
+            <field name="category_id" ref="l10n_qa_hr_payroll.DYNAMIC_ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=contract.x_sales if (contract.x_sales_comm_allowance=='cash') else 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.x_sales*(inputs.MIS.amount if (inputs.MIS and inputs.MIS.amount) else 0)/100</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the sales commission allowance for monthly invoiced sales.</field>
+        </record>
+
+        <!--Hr salary rule for calculating pension plan under category company contribution-->
+        <!-- <record id="hr_rule_pension_plan_comp" model="hr.salary.rule">
+            <field name="name">Pension Plan</field>
+            <field name="sequence" eval="331"/>
+            <field name="code">PENSION_PLAN_COMP</field>
+            <field name="category_id" ref="hr_payroll.COMP"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=contract.x_pension_plan or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.x_pension_plan*BASIC/100</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the pension plan for an employee under category company contribution.</field>
+        </record> -->
+
+        <record id="OVERTIME" model="hr.salary.rule.category">
+            <field name="name">Overtime</field>
+            <field name="code">OVERTIME</field>
+        </record>
+        <!--Hr salary rule for holiday duty overtime-->
+        <record id="hr_rule_holiday_duty" model="hr.salary.rule">
+            <field name="name">Holiday Duty Overtime</field>
+            <field name="sequence" eval="309"/>
+            <field name="code">HOVT</field>
+            <field name="category_id" ref="l10n_qa_hr_payroll.OVERTIME"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=inputs.HOVT and inputs.HOVT.amount or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = (contract.wage / 240) * inputs.HOVT.amount</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the employee holiday duty overtime.</field>
+        </record>
+
+           <!--Hr salary rule for work day duty overtime-->
+        <record id="hr_rule_work_day_duty" model="hr.salary.rule">
+            <field name="name">Worked Day Overtime</field>
+            <field name="sequence" eval="310"/>
+            <field name="code">OVT</field>
+            <field name="category_id" ref="l10n_qa_hr_payroll.OVERTIME"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=inputs.OVT and inputs.OVT.amount or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = (contract.wage / 240) * inputs.OVT.amount</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the employee weekend duty overtime.</field>
+        </record>
+       
+
+        <!--Hr salary rule for weekend duty overtime-->
+        <record id="hr_rule_weekend_duty" model="hr.salary.rule">
+            <field name="name">Weekend Duty Overtime</field>
+            <field name="sequence" eval="310"/>
+            <field name="code">WOVT</field>
+            <field name="category_id" ref="l10n_qa_hr_payroll.OVERTIME"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=inputs.WOVT and inputs.WOVT.amount or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = (contract.wage / worked_days.WORKDAYS.number_of_hours) * inputs.WOVT.amount</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the employee weekend duty overtime.</field>
+        </record>
+
+        <!--Hr salary rule for calculating income tax-->
+        <!-- <record id="hr_rule_income_tax" model="hr.salary.rule">
+            <field name="name">Income Tax</field>
+            <field name="sequence" eval="317"/>
+            <field name="code">INCOME_TAX</field>
+            <field name="category_id" ref="l10n_qa_hr_zmakan.TAX"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=contract.x_income_tax or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.x_income_tax*(BASIC + categories.ALW + categories.OVERTIME)/100</field>
+            <field name="note">This rule will calculate the income tax for an employee.</field>
+        </record> -->
+
+        <!-- hajj leave -->
+        <record id="hr_rule_hajj_leave" model="hr.salary.rule">
+            <field name="name">Hajj Leave Deduction</field>
+            <field name="sequence" eval="326"/>
+            <field name="code">HAJJ_LEAVE</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=worked_days.Hajj_Leave and worked_days.Hajj_Leave.number_of_days or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result= (BASIC + categories.ALW)*(worked_days.Hajj_Leave.number_of_days or 0)/30</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the Hajj Leave leave deduction for an employee.</field>
+        </record>
+<!-- marriage leave -->
+        <record id="hr_rule_mrg_leave" model="hr.salary.rule">
+            <field name="name">Marriage Leave Deduction</field>
+            <field name="sequence" eval="327"/>
+            <field name="code">MRG_LEAVE</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=worked_days.Marriage_Leave and worked_days.Marriage_Leave.number_of_days or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result= (BASIC + categories.ALW)*(worked_days.Marriage_Leave.number_of_days or 0)/30</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the Marriage Leave leave deduction for an employee.</field>
+        </record>
+        <!-- compassionate leave -->
+
+        <record id="hr_rule_cmp_leave" model="hr.salary.rule">
+            <field name="name">Compassionate Leave Deduction</field>
+            <field name="sequence" eval="328"/>
+            <field name="code">CMP_LEAVE</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=worked_days.Compassionate_Leave and worked_days.Compassionate_Leave.number_of_days or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result= (BASIC + categories.ALW)*(worked_days.Compassionate_Leave.number_of_days or 0)/30</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the Compassionate Leave leave deduction for an employee.</field>
+        </record>
+
+            <!-- Unautherized Leave -->
+            <record id="hr_rule_unautherized_leave" model="hr.salary.rule">
+            <field name="name">Unautherized Leave Deduction</field>
+            <field name="sequence" eval="329"/>
+            <field name="code">UNAUTHRZD_LEAVE</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=worked_days.Unautherized_Leave and worked_days.Unautherized_Leave.number_of_days or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result= (BASIC + categories.ALW)*(worked_days.Unautherized_Leave.number_of_days or 0)/30</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the Unautherized Leave leave deduction for an employee.</field>
+        </record>
+        <!-- unpaid sick leave -->
+        <record id="hr_rule_unpaid_sick_leave" model="hr.salary.rule">
+            <field name="name">Unpaid Sick Leave Deduction</field>
+            <field name="sequence" eval="322"/>
+            <field name="code">UNPAID_SICK_LEAVE</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=worked_days.Unpaid_Sick_Leave and worked_days.Unpaid_Sick_Leave.number_of_days or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result= ((BASIC + categories.ALW)*(worked_days.Unpaid_Sick_Leave.number_of_days or 0)/30)</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the unpaid paid sick leave deduction for an employee.</field>
+        </record>
+        <!--Hr salary rule for calculating partially paid sick leave deduction-->
+        <record id="hr_rule_partially_paid_sick_leave" model="hr.salary.rule">
+            <field name="name">Partially Paid Sick Leave Deduction</field>
+            <field name="sequence" eval="321"/>
+            <field name="code">PARTIALLY_PAID_SICK_LEAVE</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=worked_days.Partially_Paid_Sick_Leave and worked_days.Partially_Paid_Sick_Leave.number_of_days or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result= (((BASIC + categories.ALW)*(worked_days.Partially_Paid_Sick_Leave.number_of_days or 0)/30)/2)</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the partially paid sick leave deduction for an employee.</field>
+        </record>      
+
+
+
+<!-- inputs -->
+
+        <record id="hr_rule_encouragement_allowance" model="hr.salary.rule">
+            <field name="name">Encouragement Allowance</field>
+            <field name="sequence" eval="306"/>
+            <field name="code">ENCOURAGE_ALW</field>
+            <field name="category_id" ref="l10n_qa_hr_payroll.DYNAMIC_ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=inputs.EALW or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.EALW.amount</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will provide the employee special allowance.</field>
+        </record>
+
+       <!--  <record id="hr_rule_basic_salary_adjustment" model="hr.salary.rule">
+            <field name="name">Basic Salary Adjustment</field>
+            <field name="sequence" eval="310"/>
+            <field name="code">SALARY_ADJUST</field>
+            <field name="category_id" ref="l10n_qa_hr_payroll.ADJUST"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=inputs.BSA.amount or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.BSA.amount</field>
+            <field name="note">This rule will calculate the basic salary adjustment for an employee.</field>
+        </record> -->
+
+        <!-- <record id="hr_rule_house_adjustment" model="hr.salary.rule">
+            <field name="name">Housing Allowance Adjustment</field>
+            <field name="sequence" eval="311"/>
+            <field name="code">HOUSE_ADJUST</field>
+            <field name="category_id" ref="l10n_qa_hr_payroll.ADJUST"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=inputs.HAA.amount or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.HAA.amount</field>
+            <field name="note">This rule will calculate the employee housing allowance adjustment.</field>
+        </record> -->
+
+       <!--  <record id="hr_rule_special_adjustment" model="hr.salary.rule">
+            <field name="name">Special Allowance Adjustment</field>
+            <field name="sequence" eval="314"/>
+            <field name="code">SPECIAL_ADJUST</field>
+            <field name="category_id" ref="l10n_qa_hr_payroll.ADJUST"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=inputs.SAA.amount or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.SAA.amount</field>
+            <field name="note">This rule will calculate the employee special allowance adjustment.</field>
+        </record> -->
+
+        <record id="hr_rule_annual_bonus" model="hr.salary.rule">
+            <field name="name">Annual Bonus</field>
+            <field name="sequence" eval="315"/>
+            <field name="code">BONUS</field>
+            <field name="category_id" ref="l10n_qa_hr_payroll.ANNUAL_BENEFIT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=contract.x_endofyear_bonus or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = (0 if (contract.x_endofyear_bonus == 'not_eligible')
+                else (contract.wage * (inputs.PERF.amount if (inputs.PERF) else 0)))
+            </field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the employee annual bonus.</field>
+        </record>
+
+        <record id="hr_rule_annual_ticket" model="hr.salary.rule">
+            <field name="name">Annual Ticket</field>
+            <field name="sequence" eval="316"/>
+            <field name="code">TICKET</field>
+            <field name="category_id" ref="l10n_qa_hr_payroll.ANNUAL_BENEFIT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=contract.x_ticket or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = (inputs.EMP.amount if (contract.x_ticket == 'employee_only')
+                else (inputs.EMP.amount+inputs.WIFE.amount) if (contract.x_ticket == 'employee_wife')
+                else (inputs.EMP.amount+inputs.WIFE.amount+inputs.KID1.amount) if (contract.x_ticket == 'employee_wife_1kid')
+                else (inputs.EMP.amount+inputs.WIFE.amount+inputs.KID1.amount+inputs.KID2.amount) if (contract.x_ticket == 'employee_wife_2kids')
+                else (inputs.EMP.amount+inputs.WIFE.amount+inputs.KID1.amount+inputs.KID2.amount+inputs.KID3.amount) if (contract.x_ticket == 'employee_wife_3kids')
+                else 0)</field>
+                <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will give the employee annual ticket amount.</field>
+        </record>
+
+        <record id="hr_rule_salary_recovery" model="hr.salary.rule">
+            <field name="name">Advance Salary Recovery</field>
+            <field name="sequence" eval="318"/>
+            <field name="code">ADVANCE_SAL_RECOVERY</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=inputs.ASR or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.ASR.amount</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the advance salary recovery for an employee.</field>
+        </record>
+
+        <!--Hr salary rule for calculating other deductions-->
+        <record id="hr_rule_other_ded" model="hr.salary.rule">
+            <field name="name">Other Deductions</field>
+            <field name="sequence" eval="325"/>
+            <field name="code">OTHER_DED</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=inputs.ODED or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.ODED.amount</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the other deductions for an employee.</field>
+        </record>
+        <!--Hr salary rule for calculating unemployment-->
+        <record id="hr_rule_unemployment" model="hr.salary.rule">
+            <field name="name">Unemployment Deduction</field>
+            <field name="sequence" eval="324"/>
+            <field name="code">UNEMPLOYMENT</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=worked_days.Unemployment and worked_days.Unemployment.number_of_days or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result= (BASIC + categories.ALW)*(worked_days.Unemployment.number_of_days or 0)/30</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the unemployment deduction for an employee.</field>
+        </record>
+        <!--Hr salary rule for calculating total company contribution-->
+        <!-- <record id="hr_rule_total_comp_contribution" model="hr.salary.rule">
+            <field name="name">Total Company Contribution</field>
+            <field name="sequence" eval="332"/>
+            <field name="code">TOTAL_COMP_CONTRIBUTION</field>
+            <field name="category_id" ref="l10n_qa_hr_payroll.TOTAL_COMP"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=categories.COMP or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.COMP</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the total company contribution for an employee.</field>
+        </record> -->
+        <!--Hr salary rule for duty roaster allowance-->
+        <record id="hr_rule_duty_roaster" model="hr.salary.rule">
+            <field name="name">Duty Roaster Allowance</field>
+            <field name="sequence" eval="304"/>
+            <field name="code">DRA</field>
+            <field name="category_id" ref="l10n_qa_hr_payroll.DYNAMIC_ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=contract.x_duty_roaster_allowance or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = (inputs.DRD.amount if (inputs.DRD) else 0)*contract.x_duty_roaster_allowance</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the employee duty roaster allowance based on 'Days on Duty Roaster'.</field>
+        </record>
+
+        <!-- total -->
+        <record id="hr_rule_total_payment" model="hr.salary.rule">
+            <field name="name">Total Payment</field>
+            <field name="sequence" eval="333"/>
+            <field name="code">TOTAL_PAY</field>
+            <field name="category_id" ref="hr_payroll.NET"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = BASIC+categories.ALW+categories.DYNAMIC_ALW+categories.OVERTIME+categories.ANNUAL_BENEFIT-categories.TAX-categories.DED
+            </field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the employee total payment.</field>
+        </record>
+        <!--Hr salary rule for calculating unpaid leave deduction-->
+        <record id="hr_rule_unpaid_leave" model="hr.salary.rule">
+            <field name="name">Unpaid Leave Deduction</field>
+            <field name="sequence" eval="319"/>
+            <field name="code">UNPAID_LEAVE</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=worked_days.LEAVE90 and worked_days.LEAVE90.number_of_days or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result= (BASIC + categories.ALW)*(worked_days.LEAVE90.number_of_days or 0)/30</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the unpaid leave deduction for an employee.</field>
+        </record>
+        <!--Hr salary rule for calculating pension plan under category deduction-->
+        <!-- <record id="hr_rule_pension_plan_ded" model="hr.salary.rule">
+            <field name="name">Pension Plan Deduction</field>
+            <field name="sequence" eval="330"/>
+            <field name="code">PENSION_PLAN_DED</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=contract.x_pension_plan or False</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.x_pension_plan*BASIC/100</field>
+            <field name="struct_id" ref="structure_004"/>
+            <field name="note">This rule will calculate the pension plan for an employee under category deduction.</field>
+        </record> -->
+
+        <!--adding the rule input 'This Month Invoiced Sales' for the salary rule sales commission allowance-->
+        <record id="hr_rule_input_sales_comm" model="hr.payslip.input.type">
+            <field name="code">MIS</field>
+            <field name="name">(+) This Month Invoiced Sales((Monthely Benefits)) </field>
+            <field name="struct_ids" eval="[(4, ref('l10n_qa_hr_payroll.structure_004'))]"/>  
+        </record>
+       
+        <!--adding the rule input 'Encouragement Allowance' for the salary rule encouragement allowance-->
+        <record id="hr_rule_input_encourage" model="hr.payslip.input.type">
+            <field name="code">EALW</field>
+            <field name="name">(+) Encouragement Allowance(Monthely Benefits)</field> <field name="struct_ids" eval="[(4, ref('l10n_qa_hr_payroll.structure_004'))]"/>
+        </record>
+        
+        <!--adding the rule input 'Performance' for the salary rule annual bonus-->
+        <record id="hr_rule_input_performance" model="hr.payslip.input.type">
+            <field name="code">PERF</field>
+            <field name="name">(+) Annual Bonus(Enter Performance Rating Between 1 to 5)</field>
+            <field name="struct_ids" eval="[(4, ref('l10n_qa_hr_payroll.structure_004'))]"/>
+        </record>
+        <!--adding the rule input 'Ticket for the Employee' for the salary rule annual ticket-->
+        <record id="hr_rule_input_employee" model="hr.payslip.input.type">
+            <field name="code">EMP</field>
+             <field name="name">(+) Ticket for the Employee(Annual Benefits)</field>
+            <field name="struct_ids" eval="[(4, ref('l10n_qa_hr_payroll.structure_004'))]"/>
+        </record>
+        <!--adding the rule input 'Ticket for the Wife' for the salary rule annual ticket-->
+        <record id="hr_rule_input_wife" model="hr.payslip.input.type">
+            <field name="code">WIFE</field>
+             <field name="name">(+) Ticket for the Wife(Annual Benefits)</field>
+            <field name="struct_ids" eval="[(4, ref('l10n_qa_hr_payroll.structure_004'))]"/>
+        </record>
+        <!--adding the rule input 'Ticket for the Kid 1' for the salary rule annual ticket-->
+        <record id="hr_rule_input_kid1" model="hr.payslip.input.type">
+            <field name="code">KID1</field>
+            <field name="name">(+) Ticket for the KID1 (Annual Benefits)</field>
+            <field name="struct_ids" eval="[(4, ref('l10n_qa_hr_payroll.structure_004'))]"/>
+        </record>
+        <!--adding the rule input 'Ticket for the Kid 2' for the salary rule annual ticket-->
+        <record id="hr_rule_input_kid2" model="hr.payslip.input.type">
+            <field name="code">KID2</field>
+             <field name="name">(+) Ticket for the KID2 (Annual Benefits)</field>
+            <field name="struct_ids" eval="[(4, ref('l10n_qa_hr_payroll.structure_004'))]"/>
+        </record>
+        <!--adding the rule input 'Ticket for the Kid 3' for the salary rule annual ticket-->
+        <record id="hr_rule_input_kid3" model="hr.payslip.input.type">
+            <field name="code">KID3</field>
+             <field name="name">(+) Ticket for the KID3  (Annual Benefits)</field>
+            <field name="struct_ids" eval="[(4, ref('l10n_qa_hr_payroll.structure_004'))]"/>
+        </record>
+        <!--adding the rule input 'Advanced Salary Recovery' for the salary rule advanced salary recovery-->
+        <record id="hr_rule_input_advanced_salary" model="hr.payslip.input.type">
+            <field name="code">ASR</field>
+            <field name="name">(-) Advanced Salary Recovery(Monthely Deduction)</field>
+            <field name="struct_ids" eval="[(4, ref('l10n_qa_hr_payroll.structure_004'))]"/>
+        </record>
+        <!--adding the rule input 'Other Deduction' for the salary rule total deduction-->
+        <record id="hr_rule_input_other_ded" model="hr.payslip.input.type">
+            <field name="code">ODED</field>
+            <field name="name">(-) Other Deduction(Monthely Deduction)</field>
+            <field name="struct_ids" eval="[(4, ref('l10n_qa_hr_payroll.structure_004'))]"/>
+        </record>
+        <record id="hr_rule_input_duty_roaster" model="hr.payslip.input.type">
+            <field name="code">DRD</field>
+            <field name="name">(+) Days on Duty Roaster(Monthely Benefits)</field>
+            <field name="struct_ids" eval="[(4, ref('l10n_qa_hr_payroll.structure_004'))]"/>
+        </record>
+        <record id="hr_rule_input_holiday" model="hr.payslip.input.type">
+            <field name="code">HOVT</field>
+            <field name="name">(+) Holiday Duty Overtime(Monthely Benefits)</field>
+            <field name="struct_ids" eval="[(4, ref('l10n_qa_hr_payroll.structure_004'))]"/>
+        </record>
+
+        <record id="hr_rule_input_workday" model="hr.payslip.input.type">
+            <field name="code">OVT</field>
+            <field name="name">(+) Work Day Overtime(Monthely Benefits)</field>
+            <field name="struct_ids" eval="[(4, ref('l10n_qa_hr_payroll.structure_004'))]"/>
+        </record>
+
+         <record id="work_entry_type_unemployment" model="hr.work.entry.type">
+            <field name="name">Unemployment</field>
+            <field name="code">Unemployment</field>
+            <field name="color">2</field>
+            <field name="is_leave">True</field>
+            <field name="round_days">HALF</field>
+            <field name="round_days_type">DOWN</field>
+        </record>        
+
+        <record id="work_entry_type_sick_timeoff" model="hr.work.entry.type">
+            <field name="name">Paid Sick Leave</field>
+            <field name="code">Sick Leaves On Current Period</field>
+            <field name="color">2</field>
+            <field name="is_leave">True</field>
+            <field name="round_days">HALF</field>
+            <field name="round_days_type">DOWN</field>
+        </record>
+       
+
+        <record id="work_entry_type_normal_working_days" model="hr.work.entry.type">
+            <field name="name">Normal Working Days</field>
+            <field name="code">WORKDAYS</field>
+            <field name="color">2</field>
+            <field name="is_leave">True</field>
+            <field name="round_days">HALF</field>
+            <field name="round_days_type">DOWN</field>
+        </record>
+
+         <record id="work_entry_type_normal_working_days_100" model="hr.work.entry.type">
+            <field name="name">Normal Working Days</field>
+            <field name="code">WORK100%</field>
+            <field name="color">2</field>
+            <!-- <field name="is_leave">True</field> -->
+          <!--   <field name="round_days">HALF</field>
+            <field name="round_days_type">DOWN</field> -->
+        </record>
+
+         <record id="work_entry_type_global" model="hr.work.entry.type">
+            <field name="name">Global</field>
+            <field name="code">Global</field>
+            <field name="color">2</field>
+            <field name="is_leave">True</field>
+            <field name="round_days">HALF</field>
+            <field name="round_days_type">DOWN</field>
+        </record>
+         <!-- <record id="hr_holidays.holiday_status_sl" model="hr.leave.type">
+            <field name="work_entry_type_id" ref="work_entry_type_normal_working_days"></field>
+        </record>
+ -->
+         <record id="work_entry_type_mrg" model="hr.work.entry.type">
+            <field name="name">Marriage_Leave</field>
+            <field name="code">Marriage_Leave</field>
+            <field name="color">2</field>
+            <field name="is_leave">True</field>
+            <field name="round_days">HALF</field>
+            <field name="round_days_type">DOWN</field>
+        </record>
+
+        <record id="work_entry_type_hajj" model="hr.work.entry.type">
+            <field name="name">Hajj_Leave</field>
+            <field name="code">Hajj_Leave</field>
+            <field name="color">2</field>
+            <field name="is_leave">True</field>
+            <field name="round_days">HALF</field>
+            <field name="round_days_type">DOWN</field>
+        </record>      
+
+        <record id="holiday_status_hajj" model="hr.leave.type">
+            <field name="name">Hajj_Leave</field>
+            <field name="allocation_type">fixed</field>
+            <field name="validation_type">both</field>
+            <field name="color_name">black</field>        
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="responsible_id" ref="base.user_admin"/>
+            <field name="work_entry_type_id" ref="work_entry_type_hajj"></field>
+
+        </record>
+
+        <record id="holiday_status_mrg" model="hr.leave.type">
+            <field name="name">Marriage_Leave</field>
+            <field name="allocation_type">fixed</field>
+            <field name="validation_type">both</field>
+            <field name="color_name">black</field>        
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="responsible_id" ref="base.user_admin"/>
+            <field name="work_entry_type_id" ref="work_entry_type_mrg"></field>
+            <!-- <field name="work_entry_type_id" ref="l10n_qa_hr_payroll.hr_rule_mrg_leave"/> -->
+        </record>
+
+        <record id="work_entry_type_cmp" model="hr.work.entry.type">
+            <field name="name">Compassionate_Leave</field>
+            <field name="code">Compassionate_Leave</field>
+            <field name="color">2</field>
+            <field name="is_leave">True</field>
+            <field name="round_days">HALF</field>
+            <field name="round_days_type">DOWN</field>
+        </record>      
+
+        <record id="holiday_status_cmp" model="hr.leave.type">
+            <field name="name">Compassionate_Leave</field>
+            <field name="allocation_type">fixed</field>
+            <field name="validation_type">both</field>
+            <field name="color_name">black</field>        
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="responsible_id" ref="base.user_admin"/>
+            <field name="work_entry_type_id" ref="work_entry_type_cmp"></field>
+        </record>
+
+         <record id="work_entry_type_unal" model="hr.work.entry.type">
+            <field name="name">Unautherized_Leave</field>
+            <field name="code">Unautherized_Leave</field>
+            <field name="color">2</field>
+            <field name="is_leave">True</field>
+            <field name="round_days">HALF</field>
+            <field name="round_days_type">DOWN</field>
+        </record>      
+
+        <record id="holiday_status_unal" model="hr.leave.type">
+            <field name="name">Unautherized_Leave</field>
+            <field name="allocation_type">fixed</field>
+            <field name="validation_type">both</field>
+            <field name="color_name">black</field>        
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="responsible_id" ref="base.user_admin"/>
+            <field name="work_entry_type_id" ref="work_entry_type_unal"></field>
+        </record>
+
+        <record id="work_entry_type_unpaid" model="hr.work.entry.type">
+            <field name="name">Unpaid_Sick_Leave</field>
+            <field name="code">Unpaid_Sick_Leave</field>
+            <field name="color">2</field>
+            <field name="is_leave">True</field>
+            <field name="round_days">HALF</field>
+            <field name="round_days_type">DOWN</field>
+        </record>      
+
+      <!--   <record id="holiday_status_unpaid" model="hr.leave.type">
+            <field name="name">Unpaid_Sick_Leave</field>
+            <field name="allocation_type">fixed</field>
+            <field name="validation_type">both</field>
+            <field name="color_name">black</field>        
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="responsible_id" ref="base.user_admin"/>
+            <field name="work_entry_type_id" ref="work_entry_type_unpaid"></field>
+        </record> -->
+
+        <record id="work_entry_type_partially" model="hr.work.entry.type">
+            <field name="name">Partially_Paid_Sick_Leave</field>
+            <field name="code">Partially_Paid_Sick_Leave</field>
+            <field name="color">2</field>
+            <field name="is_leave">True</field>
+            <field name="round_days">HALF</field>
+            <field name="round_days_type">DOWN</field>
+        </record>      
+
+        <!-- <record id="holiday_status_partially" model="hr.leave.type">
+            <field name="name">Partially_Paid_Sick_Leave</field>
+            <field name="allocation_type">fixed</field>
+            <field name="validation_type">both</field>
+            <field name="color_name">black</field>        
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="responsible_id" ref="base.user_admin"/>
+            <field name="work_entry_type_id" ref="work_entry_type_partially"></field>
+        </record> -->
+
+
+</data>
+
+</odoo>

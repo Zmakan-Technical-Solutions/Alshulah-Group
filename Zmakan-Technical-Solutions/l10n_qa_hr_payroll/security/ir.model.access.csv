@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_model_employee_relation_1,employee.relation,model_employee_relation,,1,1,1,1
+access_model_employee_religion_1,employee.religion,model_employee_religion,,1,1,1,1
+access_model_member_details_1,member.details,model_member_details,,1,1,1,1
+access_model_license_type_1,license.type,model_license_type,,1,1,1,1

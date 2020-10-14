@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="hr_employee_religion_views" model="ir.ui.view">
+            <field name="name">hr_employee_religion</field>
+            <field name="model">employee.religion</field>
+            <field name="arch" type="xml">
+            	<form String="Religion">
+            		<sheet>
+            			<group>
+            				<group>
+            			<field name="name" String="Religion"/>
+            		</group>
+            	</group>
+            		</sheet>
+            	</form>
+            </field>
+        </record>
+    </data>
+</odoo>
