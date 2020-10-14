@@ -13,12 +13,12 @@
 [submodule "Zmakan-Technical-Solutions/zts_asg_custom"]
 	path = Zmakan-Technical-Solutions/zts_asg_custom
 	url = git@github.com:Zmakan-Technical-Solutions/zts_asg_custom.git
-
 	branch = 13.0
 
-[submodule "Zmakan-Technical-Solutions/l10n_qa_hr_payroll"]
-	path = Zmakan-Technical-Solutions/l10n_qa_hr_payroll
-	url = git@github.com:Zmakan-Technical-Solutions/l10n_qa_hr_payroll.git
+[submodule "Zmakan-Technical-Solutions/zts_user_based_discount"]
+	path = Zmakan-Technical-Solutions/zts_user_based_discount
+	url = git@github.com:Zmakan-Technical-Solutions/zts_user_based_discount.git
+
 
 [submodule "Zmakan-Technical-Solutions/l10n_qa_hr_contract"]
 	path = Zmakan-Technical-Solutions/l10n_qa_hr_contract
@@ -28,6 +28,26 @@
 	path = Zmakan-Technical-Solutions/partner_credit_limit_zts
 	url = git@github.com:Zmakan-Technical-Solutions/partner_credit_limit_zts.git
 
+[submodule "Zmakan-Technical-Solutions/zts_wps_sif"]
+	path = Zmakan-Technical-Solutions/zts_wps_sif
+	url = git@github.com:Zmakan-Technical-Solutions/zts_wps_sif.git
+	branch = 13.0
+
+[submodule "Zmakan-Technical-Solutions/discount_restrictions"]
+	path = Zmakan-Technical-Solutions/discount_restrictions
+	url = git@github.com:Zmakan-Technical-Solutions/discount_restrictions.git
+
+[submodule "Zmakan-Technical-Solutions/stock_no_negative"]
+	path = Zmakan-Technical-Solutions/stock_no_negative
+	url = git@github.com:Zmakan-Technical-Solutions/stock_no_negative.git
+	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/zts_invoice_post_restriction"]
+	path = Zmakan-Technical-Solutions/zts_invoice_post_restriction
+	url = git@github.com:Zmakan-Technical-Solutions/zts_invoice_post_restriction.git
+	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/stock_by_location"]
+	path = Zmakan-Technical-Solutions/stock_by_location
+	url = git@github.com:Zmakan-Technical-Solutions/stock_by_location.git
 	branch = 13.0
 [submodule "Zmakan-Technical-Solutions/zts_loan"]
 	path = Zmakan-Technical-Solutions/zts_loan
