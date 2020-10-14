@@ -57,6 +57,11 @@
 	path = Zmakan-Technical-Solutions/zts_salary_advance
 	url = git@github.com:Zmakan-Technical-Solutions/zts_salary_advance.git
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/l10n_qa_hr_payroll"]
+	path = Zmakan-Technical-Solutions/l10n_qa_hr_payroll
+	url = git@github.com:Zmakan-Technical-Solutions/l10n_qa_hr_payroll.git
+	branch = 13.0
+
 [submodule "Zmakan-Technical-Solutions/zts_hr_eos"]
 	path = Zmakan-Technical-Solutions/zts_hr_eos
 	url = git@github.com:Zmakan-Technical-Solutions/zts_hr_eos.git
