@@ -50,3 +50,7 @@
 	path = Zmakan-Technical-Solutions/stock_by_location
 	url = git@github.com:Zmakan-Technical-Solutions/stock_by_location.git
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/zts_company_stock_transfer"]
+	path = Zmakan-Technical-Solutions/zts_company_stock_transfer
+	url = git@github.com:Zmakan-Technical-Solutions/zts_company_stock_transfer.git
+	branch = 13.0
