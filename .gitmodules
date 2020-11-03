@@ -54,3 +54,7 @@
 	path = Zmakan-Technical-Solutions/zts_company_stock_transfer
 	url = git@github.com:Zmakan-Technical-Solutions/zts_company_stock_transfer.git
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/localization_payroll_alshulah"]
+	path = Zmakan-Technical-Solutions/localization_payroll_alshulah
+	url = git@github.com:Zmakan-Technical-Solutions/localization_payroll_alshulah.git
+	branch = 13.0
