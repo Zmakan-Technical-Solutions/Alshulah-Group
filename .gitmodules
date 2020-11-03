@@ -70,3 +70,7 @@
 	path = Zmakan-Technical-Solutions/zts_hr_eos
 	url = git@github.com:Zmakan-Technical-Solutions/zts_hr_eos.git
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/zts_attendance_sheet"]
+	path = Zmakan-Technical-Solutions/zts_attendance_sheet
+	url = git@github.com:Zmakan-Technical-Solutions/zts_attendance_sheet.git
+	branch = 13.0
