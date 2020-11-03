@@ -74,3 +74,7 @@
 	path = Zmakan-Technical-Solutions/zts_attendance_sheet
 	url = git@github.com:Zmakan-Technical-Solutions/zts_attendance_sheet.git
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/localization_contract"]
+	path = Zmakan-Technical-Solutions/localization_contract
+	url = git@github.com:Zmakan-Technical-Solutions/localization_contract.git
+	branch = 13.0
