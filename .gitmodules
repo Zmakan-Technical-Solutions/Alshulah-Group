@@ -58,3 +58,7 @@
 	path = Zmakan-Technical-Solutions/localization_payroll_alshulah
 	url = git@github.com:Zmakan-Technical-Solutions/localization_payroll_alshulah.git
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/zts_loan"]
+	path = Zmakan-Technical-Solutions/zts_loan
+	url = git@github.com:Zmakan-Technical-Solutions/zts_loan.git
+	branch = 13.0
