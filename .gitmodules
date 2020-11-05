@@ -58,3 +58,7 @@
 	path = Zmakan-Technical-Solutions/zts_real_estate_management
 	url = git@github.com:Zmakan-Technical-Solutions/zts_real_estate_management.git
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/report_xlsx"]
+	path = Zmakan-Technical-Solutions/report_xlsx
+	url = git@github.com:Zmakan-Technical-Solutions/report_xlsx.git
+	branch = 13.0
