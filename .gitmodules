@@ -54,3 +54,7 @@
 	path = Zmakan-Technical-Solutions/zts_company_stock_transfer
 	url = git@github.com:Zmakan-Technical-Solutions/zts_company_stock_transfer.git
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/zts_real_estate_management"]
+	path = Zmakan-Technical-Solutions/zts_real_estate_management
+	url = git@github.com:Zmakan-Technical-Solutions/zts_real_estate_management.git
+	branch = 13.0
