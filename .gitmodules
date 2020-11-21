@@ -54,6 +54,7 @@
 	path = Zmakan-Technical-Solutions/zts_company_stock_transfer
 	url = git@github.com:Zmakan-Technical-Solutions/zts_company_stock_transfer.git
 	branch = 13.0
+
 [submodule "Zmakan-Technical-Solutions/zts_real_estate_management"]
 	path = Zmakan-Technical-Solutions/zts_real_estate_management
 	url = git@github.com:Zmakan-Technical-Solutions/zts_real_estate_management.git
@@ -61,4 +62,28 @@
 [submodule "Zmakan-Technical-Solutions/report_xlsx"]
 	path = Zmakan-Technical-Solutions/report_xlsx
 	url = git@github.com:Zmakan-Technical-Solutions/report_xlsx.git
+
+[submodule "Zmakan-Technical-Solutions/localization_payroll_alshulah"]
+	path = Zmakan-Technical-Solutions/localization_payroll_alshulah
+	url = git@github.com:Zmakan-Technical-Solutions/localization_payroll_alshulah.git
+	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/zts_loan"]
+	path = Zmakan-Technical-Solutions/zts_loan
+	url = git@github.com:Zmakan-Technical-Solutions/zts_loan.git
+	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/zts_salary_advance"]
+	path = Zmakan-Technical-Solutions/zts_salary_advance
+	url = git@github.com:Zmakan-Technical-Solutions/zts_salary_advance.git
+	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/zts_hr_eos"]
+	path = Zmakan-Technical-Solutions/zts_hr_eos
+	url = git@github.com:Zmakan-Technical-Solutions/zts_hr_eos.git
+	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/zts_attendance_sheet"]
+	path = Zmakan-Technical-Solutions/zts_attendance_sheet
+	url = git@github.com:Zmakan-Technical-Solutions/zts_attendance_sheet.git
+	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/localization_contract"]
+	path = Zmakan-Technical-Solutions/localization_contract
+	url = git@github.com:Zmakan-Technical-Solutions/localization_contract.git
 	branch = 13.0
