@@ -91,3 +91,7 @@
 	path = Zmakan-Technical-Solutions/zts_arabic_sale_invoice
 	url = git@github.com:Zmakan-Technical-Solutions/zts_arabic_sale_invoice.git
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/discount_sale_invoice_arabic"]
+	path = Zmakan-Technical-Solutions/discount_sale_invoice_arabic
+	url = git@github.com:Zmakan-Technical-Solutions/discount_sale_invoice_arabic.git
+	branch = 13.0
