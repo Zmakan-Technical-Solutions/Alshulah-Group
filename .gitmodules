@@ -107,3 +107,7 @@
 	path = Zmakan-Technical-Solutions/zts_print_journal_entry
 	url = git@github.com:Zmakan-Technical-Solutions/zts_print_journal_entry.git
 	branch = 13.0
+[submodule "Zmakan-Technical-Solutions/zts_credit_note_restriction"]
+	path = Zmakan-Technical-Solutions/zts_credit_note_restriction
+	url = git@github.com:Zmakan-Technical-Solutions/zts_credit_note_restriction.git
+	branch = 13.0
